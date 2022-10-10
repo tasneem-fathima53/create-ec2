@@ -1,13 +1,15 @@
----# Basic provisioning example
-- host: localhost
-  task:
-  - name: launching ec2
-     amazon.aws.ec2:
-     key_name: b40
-     instance_type: t2.micro
-     image: ami-0ea0f26a6d50850c5
-     wait: yes
-     group: allow_trafic
-     count: 1
-     vpc_subnet_id: subnet-04700d1e27e7fa2d0
-     assign_public_ip: yes
+--- #Basic provisioning example
+- hosts: localhost
+  gather_facts: true
+  tasks:
+   - name: launching ec2
+     ec2:
+        key_name: b40
+        region: eu-west-1
+        instance_type: t2.micro
+        image: ami-0ea0f26a6d50850c5
+        wait: yes
+        group: default
+        count: 1
+        vpc_subnet_id: subnet-04700d1e27e7fa2d0
+        assign_public_ip: yes
